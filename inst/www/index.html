@@ -63,7 +63,7 @@
     $scope.ecoregion = $scope.ecoregions[0]
     $scope.wdpa_id = $scope.wdpa_ids[0]    
     $scope.makeChart = function(){
-       var req = ocpu.rpc("inlineChart", 
+       var req = ocpu.rpc("sochiChart", 
         {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
         $('#sochi').html(output)
        }).fail(function(text){
