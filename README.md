@@ -12,9 +12,9 @@ The easiest way to run this webapp locally is to install the `sochi` package fro
 
 ```S
 install.packages('XML', type = 'source')
-devtools::install_github('ramnathv/sochi')
+#devtools::install_github('ramnathv/sochi')
 library(opencpu)
-opencpu$browse('/library/sochi/www')
+opencpu$browse('/library/ocpuRadarplot/www')
 ```
 
 

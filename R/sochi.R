@@ -1,10 +1,11 @@
-getMedalCounts = function(){
+getMedalCounts = function(ecoregion='10105',wdpa_id='1500'){
 library(reshape2)
+rpath = system.file("extdata",package="ocpuRadarplot")
 
 #load('data.RData')
-hri<-read.table('hri_results.csv',sep=' ',header=T,dec='.')
+hri<-read.table(paste(rpath,'/hri_results.csv',sep=''),sep=' ',header=T,dec='.')
 # Export segments shapefile table to csv (QGIS) as db.csv and import it in R
-db<-read.table('db.csv',sep=',',header=T)
+db<-read.table(paste(rpath,'/db.csv',sep=''),sep=',',header=T)
 # merge with segmentation output shapefile table
 names(db)<-c('cat','label','wdpa_id','wdpaid')
 duplicated(db$wdpaid)->dupl_index
@@ -42,9 +43,17 @@ hri_ecos<-rbind(hri_ecos,hri2eco)
 
 }
 
-data<-hri_ecos[-1,]
+data4<-hri_ecos[-1,]
 rm(db,db0,dupl_index,ecos,h,hri,hri_ecos,hri0,hri2,hri22,hri2eco,index,k)
-return(data)
+
+	data4[data4$ecoregion %in% ecoregion,]->data2
+    data2[data2$wdpa_id %in% wdpa_id,]->data7
+
+	as.data.frame(t(data7[,3:11]))->data3
+	as.character(data7$wdpaid)->names(data3)
+
+#print(data3)
+return(data3)
 }
 
 
@@ -66,22 +75,30 @@ return(data)
 ########################################################################################
 #  #### Radar chart output 2
 #  output$radar1 <- renderChart2({
-sochiChart <- function(event, year){
+sochiChart <- function(ecoregion, wdpa_id){
+	dataf = getMedalCounts(ecoregion, wdpa_id)
     a<- rCharts:::Highcharts$new() 
     a$chart(type='line',polar=TRUE, width=600,height = 350)
     a$pane(size='90%')
     a$title(text= "Environmental Variables")
-    a$xAxis(categories= rownames(passData()),tickmarkPlacement='on',lineWidth=0)
+    a$xAxis(categories= rownames(dataf),tickmarkPlacement='on',lineWidth=0)
     a$yAxis(gridLineInterpolation='polygon',lineWidth=0,min=0)
-    a$data(passData(),pointPlacement='on')   
+    a$data(dataf,pointPlacement='off')   
     return(a)    
   }#)
 #})
 
 #output$table1 <- renderChart2({
 
-inlineChart <- function(event, year){
-  a <- sochiChart(event, year)
+saveChart <- function(ecoregion, wdpa_id){
+  a <- sochiChart(ecoregion, wdpa_id)
+  a$set(height = 700)
+  a$save('output.html', cdn = T)
+  return(invisible())
+}
+
+inlineChart <- function(ecoregion, wdpa_id){
+  a <- sochiChart(ecoregion, wdpa_id)
   a$set(height = 650)
   paste(capture.output(a$show('inline')), collapse ='\n')
 }

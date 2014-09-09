@@ -1,11 +1,11 @@
-Package: sochi
+Package: ocpuRadarplot
 Type: Package
-Title: OpenCPU App Displaying Sochi Medal Counts
+Title: OpenCPU App Displaying Interactive Radar plot
 Version: 1.0
-Date: 2014-02-14
-Author: Ramnath Vaidyanathan
-Maintainer: Ramnath Vaidyanathan <ramnath.vaidya@gmail.com>
-Description: OpenCPU App Displaying Sochi Medal Counts
+Date: 2014-09-09
+Author: Javier Martinez-Lopez
+Maintainer: Javier Martinez-Lopez <javi.martinez.lopez@gmail.com>
+Description: OpenCPU App Displaying Interactive Radar plot
 License: MIT
 Imports:
   XML,
