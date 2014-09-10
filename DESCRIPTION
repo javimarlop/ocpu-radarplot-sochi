@@ -7,6 +7,7 @@ Author: Javier Martinez-Lopez
 Maintainer: Javier Martinez-Lopez <javi.martinez.lopez@gmail.com>
 Description: OpenCPU App Displaying Interactive Radar plot
 License: MIT
+LazyData: true
 Imports:
   XML,
   reshape2,
