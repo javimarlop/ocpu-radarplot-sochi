@@ -75,7 +75,7 @@ return(data3)
 ########################################################################################
 #  #### Radar chart output 2
 #  output$radar1 <- renderChart2({
-sochiChart <- function(ecoregion, wdpa_id){
+sochiChart <- function(ecoregion='10105',wdpa_id='1500'){
 	dataf = getMedalCounts(ecoregion, wdpa_id)
     a<- rCharts:::Highcharts$new() 
     a$chart(type='line',polar=TRUE, width=600,height = 350)
@@ -90,14 +90,14 @@ sochiChart <- function(ecoregion, wdpa_id){
 
 #output$table1 <- renderChart2({
 
-saveChart <- function(ecoregion, wdpa_id){
+saveChart <- function(ecoregion='10105',wdpa_id='1500'){
   a <- sochiChart(ecoregion, wdpa_id)
   a$set(height = 700)
   a$save('output.html', cdn = T)
   return(invisible())
 }
 
-inlineChart <- function(ecoregion, wdpa_id){
+inlineChart <- function(ecoregion='10105',wdpa_id='1500'){
   a <- sochiChart(ecoregion, wdpa_id)
   a$set(height = 650)
   paste(capture.output(a$show('inline')), collapse ='\n')

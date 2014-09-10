@@ -10,9 +10,9 @@ This is an [OpenCPU](http://opencpu.org) application that uses the [NVD3](http:/
 
 The easiest way to run this webapp locally is to install the `sochi` package from `github`
 
-```S
+```r
 install.packages('XML', type = 'source')
-#devtools::install_github('ramnathv/sochi')
+devtools::install_github('javimarlop/ocpuRadarplot')
 library(opencpu)
 opencpu$browse('/library/ocpuRadarplot/www')
 ```
