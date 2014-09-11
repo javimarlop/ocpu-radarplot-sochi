@@ -1,6 +1,6 @@
 ### Quick Start
 
-The easiest way to run this webapp locally is to install the `sochi` package from `github`
+The easiest way to run this webapp locally is to install the `ocpuRadarplot` package from `github`
 
 ```r
 install.packages('XML', type = 'source')
