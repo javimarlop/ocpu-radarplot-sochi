@@ -22,9 +22,7 @@
     .container{
       margin-top: 40px;
     }
-    plotdiv {
-      margin-top: 20px;
-    }
+
     </style>
     
   </head>
@@ -48,19 +46,20 @@
            ng-options='wdpa_id for wdpa_id in wdpa_ids'></select>
         </div>
        <div class='col-md-9'>
-        <div id='sochi'></div>
+		<div id="sochi"></div>   
        </div>
       </div>
    </div>
+
 
     
   </body>
   <script>
   function SochiCtrl($scope){
     $scope.ecoregions = ['10105']
-    $scope.wdpa_ids = ["3146", "61533", "8067", "1500", "8067", "8068", "8073", "98116"]
+    $scope.wdpa_ids = ["3146", "61533", "8067", "1500", "8068", "8073", "98116"]
     $scope.ecoregion = $scope.ecoregions[0]
-    $scope.wdpa_id = $scope.wdpa_ids[0]    
+    $scope.wdpa_id = $scope.wdpa_ids[3]    
     $scope.makeChart = function(){
        var req = ocpu.rpc("inlineChart", 
         {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
@@ -74,10 +73,6 @@
       $scope.makeChart({ecoregion: newValues[0], wdpa_id: newValues[1]})
     })
    }
-   
-           //create the plot area on the plotdiv element
-        var req = $("#plotdiv").rplot("randomplot", {
-          n : $scope.wdpa_id
-        })
+
   </script>
 </html>

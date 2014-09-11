@@ -14,9 +14,3 @@ Imports:
   rCharts
 Collate:
   sochi.R
-  bostonhist.R
-  hello.R
-  printsummary.R
-  randomplot.R
-  readcsvnew.R
-

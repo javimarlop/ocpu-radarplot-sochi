@@ -90,10 +90,6 @@ sochiChart <- function(ecoregion='10105',wdpa_id='1500'){
 
 #output$table1 <- renderChart2({
 
-randomplot <- function(n){
-	plot(1:n,1:2)
-}
-
 saveChart <- function(ecoregion='10105',wdpa_id='1500'){
   a <- sochiChart(ecoregion, wdpa_id)
   a$set(height = 700)
