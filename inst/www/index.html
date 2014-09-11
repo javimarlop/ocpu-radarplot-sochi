@@ -22,7 +22,7 @@
     .container{
       margin-top: 40px;
     }
-    #medals {
+    plotdiv {
       margin-top: 20px;
     }
     </style>
@@ -74,5 +74,10 @@
       $scope.makeChart({ecoregion: newValues[0], wdpa_id: newValues[1]})
     })
    }
+   
+           //create the plot area on the plotdiv element
+        var req = $("#plotdiv").rplot("randomplot", {
+          n : $scope.wdpa_id
+        })
   </script>
 </html>
