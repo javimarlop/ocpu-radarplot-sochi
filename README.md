@@ -1,3 +1,14 @@
+### Quick Start
+
+The easiest way to run this webapp locally is to install the `sochi` package from `github`
+
+```r
+install.packages('XML', type = 'source')
+devtools::install_github('javimarlop/ocpu-radarplot-sochi')
+library(opencpu)
+opencpu$browse('/library/ocpuRadarplot/www')
+```
+
 ## Sochi Olympics Medal Tally
 
 __NOTE: This app is currently broken, since the data website changed their links. I will be updating to a new data source shortly.__
@@ -5,18 +16,6 @@ __NOTE: This app is currently broken, since the data website changed their links
 This is an [OpenCPU](http://opencpu.org) application that uses the [NVD3](http://nvd3.org) binding in [rCharts](http://rcharts.io) to visualize the medal counts by event in the Sochi Winter Olympics. Data is scraped from the [Sochi Olympics website](http://www.sochi2014.com/en)
 
 ![Imgur](http://i.imgur.com/hrbo8r4.png)
-
-### Quick Start
-
-The easiest way to run this webapp locally is to install the `sochi` package from `github`
-
-```r
-install.packages('XML', type = 'source')
-devtools::install_github('javimarlop/ocpuRadarplot')
-library(opencpu)
-opencpu$browse('/library/ocpuRadarplot/www')
-```
-
 
 ### Create R Package
 
