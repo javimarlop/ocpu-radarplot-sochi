@@ -4,11 +4,10 @@
   <head>
     <title>Habitat Explorer App using OpenCPU</title>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel='stylesheet'>
-    <link href='nvd3/css/nv.d3.css' rel='stylesheet' >
-    <script src='nvd3/js/jquery-1.8.2.min.js' type='text/javascript'></script>
-    <script src='nvd3/js/d3.v3.min.js' type='text/javascript'></script>
-    <script src='nvd3/js/nv.d3.min-new.js' type='text/javascript'></script>
-    <script src='nvd3/js/fisheye.js' type='text/javascript'></script>
+    <script src='http://code.jquery.com/jquery-1.9.1.min.js' type='text/javascript'></script>
+    <script src='http://code.highcharts.com/highcharts.js' type='text/javascript'></script>
+    <script src='http://code.highcharts.com/highcharts-more.js' type='text/javascript'></script>
+    <script src='http://code.highcharts.com/modules/exporting.js' type='text/javascript'></script>
     <script src='opencpu/opencpu-0.4.js' type='text/javascript'></script>
     <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js'></script>
     
@@ -63,7 +62,7 @@
     $scope.ecoregion = $scope.ecoregions[0]
     $scope.wdpa_id = $scope.wdpa_ids[0]    
     $scope.makeChart = function(){
-       var req = ocpu.rpc("sochiChart", 
+       var req = ocpu.rpc("inlineChart", 
         {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
         $('#sochi').html(output)
        }).fail(function(text){
