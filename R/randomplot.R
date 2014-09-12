@@ -22,9 +22,10 @@
 #  invisible();  
 #}
 
-randomplot2 <- function(ecoregion,wdpaid){
-  dataf = getMedalCounts(ecoregion,wdpaid)
-  plot(dataf[1,])
+randomplot2 <- function(wdpaid){
+  #dataf = getMedalCounts(ecoregion,wdpaid)
+  #plot(dataf[1,])
+  plot(1:wdpaid)
   
 }
 
@@ -32,9 +33,8 @@ randomplot <- function(wdpaid){
 
 library(rgdal)
 rpath = system.file("extdata",package="ocpuRadarplot")
-#sfile<-readOGR(lay='sfile2',dsn=rpath)
- # plot(sfile[sfile$wdpaid==as.character(wdpaid),])
- plot(1,wdpaid)
+sfile<-readOGR(lay='sfile2',dsn=rpath)
+plot(sfile[sfile$wdpaid==wdpaid,],col=sfile$wdpa_id)
   
 }
 
