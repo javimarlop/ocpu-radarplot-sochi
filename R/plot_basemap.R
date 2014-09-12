@@ -1,22 +1,20 @@
-randomplot3 <- function(wdpaid){
+randomplot3 <- function(wdpaid=1500){
 
 library(rgdal)
+library(rgeos)
+
 rpath = system.file("extdata",package="ocpuRadarplot")
-segm<-readOGR(lay='sfile2',dsn=rpath)
-#plot(sfile[sfile$wdpaid==wdpaid,],col=sfile$wdpa_id)
+segm2<-readOGR(lay='sfile2',dsn=rpath)
+segm<-segm2[segm2$wdpaid==wdpaid,]
 
 library(ggmap)
-#library(ocpuRadarplot)
 #library(maptools)
-
-#segm<-readOGR(dsn='inst/extdata',lay='sfile2')
-#segm2 <- readShapeSpatial('inst/extdata/sfile2', proj4string = CRS("+init=epsg:54009"))
 
 segments_ll <- spTransform(segm, CRS("+init=epsg:4326"))
 data<-fortify(segments_ll)
+gCentroid(segments_ll)->center
 
+ggmap(get_map(location = c(lon = center@coords[1], lat = center@coords[2]),maptype = 'terrain', zoom = 8,source=c('google')), extent = 'device') +
+       geom_polygon(aes(x = long, y = lat, group=id), data = data, color ="white", fill =factor(data$id), size = .2, alpha = .4) # "orangered4"
 
-ggmap(get_map(location = c(lon = data$long[1], lat = data$lat[1]),maptype = 'roadmap', zoom = 7,source=c('google')), extent = 'device') +
-       geom_polygon(aes(x = long, y = lat), data = data, colour = 'red', fill = 'red', alpha = .2)
-#print(p)
 }
