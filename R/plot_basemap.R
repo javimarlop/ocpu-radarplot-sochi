@@ -14,7 +14,7 @@ segments_ll <- spTransform(segm, CRS("+init=epsg:4326"))
 data<-fortify(segments_ll)
 gCentroid(segments_ll)->center
 
-ggmap(get_map(location = c(lon = center@coords[1], lat = center@coords[2]),maptype = 'terrain', zoom = "auto",source=c('google')), extent = 'device') +
+ggmap(get_map(location = c(lon = center@coords[1], lat = center@coords[2]),maptype = 'terrain', zoom = 8,source=c('google')), extent = 'device') +
        geom_polygon(aes(x = long, y = lat, group=id), data = data, color ="white", fill ="orangered4", size = .2, alpha = .4)
 
 }
