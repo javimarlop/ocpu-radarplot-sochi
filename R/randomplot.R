@@ -29,7 +29,7 @@ randomplot2 <- function(wdpaid){
   
 }
 
-randomplot3 <- function(wdpaid){
+randomplot <- function(wdpaid){
 
 library(rgdal)
 rpath = system.file("extdata",package="ocpuRadarplot")

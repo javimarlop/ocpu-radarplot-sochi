@@ -1,4 +1,4 @@
-randomplot <- function(wdpaid){
+randomplot3 <- function(wdpaid){
 
 library(rgdal)
 rpath = system.file("extdata",package="ocpuRadarplot")
@@ -16,7 +16,7 @@ segments_ll <- spTransform(segm, CRS("+init=epsg:4326"))
 data<-fortify(segments_ll)
 
 
-ggmap(get_map(location = c(lon = data$long[1], lat = data$lat[1]),maptype = 'roadmap', zoom = 7,source=c('google')), extent = 'device') +
+p<-ggmap(get_map(location = c(lon = data$long[1], lat = data$lat[1]),maptype = 'roadmap', zoom = 7,source=c('google')), extent = 'device') +
        geom_polygon(aes(x = long, y = lat), data = data, colour = 'red', fill = 'red', alpha = .2)
-  
+print(p)
 }
