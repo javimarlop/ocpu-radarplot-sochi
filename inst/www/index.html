@@ -1,78 +1,38 @@
-<!doctype HTML>
-<meta charset = 'utf-8'>
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Habitat Explorer App using OpenCPU</title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel='stylesheet'>
-    <script src='http://code.jquery.com/jquery-1.9.1.min.js' type='text/javascript'></script>
-    <script src='http://code.highcharts.com/highcharts.js' type='text/javascript'></script>
-    <script src='http://code.highcharts.com/highcharts-more.js' type='text/javascript'></script>
-    <script src='http://code.highcharts.com/modules/exporting.js' type='text/javascript'></script>
-    <script src='opencpu/opencpu-0.4.js' type='text/javascript'></script>
-    <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js'></script>
-    
-    <style>
-    .rChart {
-      display: block;
-      margin-left: auto; 
-      margin-right: auto;
-      width: 100%;
-      height: 700px;
-    }
-    .container{
-      margin-top: 40px;
-    }
-
-    </style>
+  
+    <title>OpenCPU App Demo</title>
     
   </head>
-  <body ng-app>
     
-   <div class='container'>
-     <div class='row'>
-       <div class='col-md-12'>
-         <h2>Habitat Explorer</h2>
-         <a href='http://rcharts.io' class="label label-primary">rCharts<a>
-         <a href='http://opencpu.org' class="label label-success">OpenCPU</a>
-         <a href='http://nvd3.org' class="label label-info">NVD3</a>
-       </div>
-      </div>
-       <div class='row' id='medals'>
-        <div class='col-md-3' ng-controller='SochiCtrl'>
-          <select class='form form-control' ng-model='ecoregion' 
-           ng-options='ecoregion for ecoregion in ecoregions'></select>
-          <br/>
-          <select class='form form-control' ng-model='wdpa_id' 
-           ng-options='wdpa_id for wdpa_id in wdpa_ids'></select>
-        </div>
-       <div class='col-md-9'>
-		<div id="sochi"></div>   
-       </div>
-      </div>
-   </div>
-
+  <body>
+    <h1>OpenCPU App Demo</h1>
+    
+    <p>
+      The sole purpose of this OpenCPU app is to demonstrate how to use the <a href="http://github.com/jeroenooms/opencpu.js"><tt>opencpu.js</tt></a> library to call R from Javascript using OpenCPU. 
+    </p>
+    
+    <h2>Introduction</h2>
+    
+    <p>The opencpu.js library depends on jQuery and provides some convenient wrappers around $.ajax to call the OpenCPU API.
+    A copy of jquery and opencpu.js must be included with your OpenCPU app.</p>
+    
+    <h2>Topics</h2>
+    
+    <p>Each topic consists of a minimal HTML page demonstrating basic functionality. Look at the source code of the HTML page to learn what is happening.</p>
+    
+    <ol>
+	  <li><a href="radarplot.html">Habitat Explorer (interactive radarplot)</a></li>
+	  <li><a href="plot_shp.html">Basic shapefile plotting</a></li>
+	  
+      <li><a href="hello.html">Calling a function</a></li>
+      <li><a href="plot.html">Making a plot</a></li>
+      <li><a href="data.html">Include data in a package</a></li>
+      <li><a href="upload.html">Upload a file</a></li>
+      <li><a href="chain.html">Chaining functions (use session)</a></li>
+    </ol>
 
     
   </body>
-  <script>
-  function SochiCtrl($scope){
-    $scope.ecoregions = ['10105']
-    $scope.wdpa_ids = ["3146", "61533", "8067", "1500", "8068", "8073", "98116"]
-    $scope.ecoregion = $scope.ecoregions[0]
-    $scope.wdpa_id = $scope.wdpa_ids[3]    
-    $scope.makeChart = function(){
-       var req = ocpu.rpc("inlineChart", 
-        {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
-        $('#sochi').html(output)
-       }).fail(function(text){
-         alert("Error: " + req.responseText);
-       });
-    }
-    $scope.$watchCollection('[ecoregion, wdpa_id]', function(newValues){
-      console.log(newValues)
-      $scope.makeChart({ecoregion: newValues[0], wdpa_id: newValues[1]})
-    })
-   }
-
-  </script>
 </html>
