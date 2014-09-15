@@ -156,8 +156,15 @@ lmap$geoJson(
 return(lmap)
 }
 
+saveleafmap <- function(ecoregion='10105',wdpa_id='1500'){
+  a <- leafmap(ecoregion, wdpa_id)
+  a$set(height = 500)
+  a$save('output.html', cdn = T)
+  return(invisible())
+}
+
 inlineleafmap <- function(ecoregion='10105',wdpa_id='1500'){
   a <- leafmap(ecoregion, wdpa_id)
-  a$set(height = 650)
-  paste(capture.output(a$html('inline')), collapse ='\n')
+  #a$set(height = 300)
+  paste(capture.output(a$show('inline')), collapse ='\n')
 }
