@@ -15,7 +15,7 @@ Imports:
   rgeos,
   ggmap,
   rgdal,
-  RJSONIO
+  RJOSONIO
 Collate:
   sochi.R
   bostonhist.R
