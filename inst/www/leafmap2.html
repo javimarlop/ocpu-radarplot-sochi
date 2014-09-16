@@ -68,9 +68,9 @@
 	  
   function SochiCtrl2($scope){
     $scope.ecoregions = ['10105']
-    $scope.wdpa_ids = ["3146", "61533", "8067", "1500", "8068", "8073", "98116"]
+    $scope.wdpa_ids = ["1500"]
     $scope.ecoregion = $scope.ecoregions[0]
-    $scope.wdpa_id = $scope.wdpa_ids[3]    
+    $scope.wdpa_id = $scope.wdpa_ids[0]    
     $scope.makeChart = function(){
        var req = ocpu.rpc("inlineChart", 
         {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
@@ -86,10 +86,6 @@
    }	  
 	  
   function SochiCtrl($scope){
-    $scope.ecoregions = ['10105']
-    $scope.wdpa_ids = ["1500"]
-    $scope.ecoregion = $scope.ecoregions[0]
-    $scope.wdpa_id = $scope.wdpa_ids[0]    
     $scope.makeChart = function(){
        var req = ocpu.rpc("inlineleafmap", 
         {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
@@ -98,10 +94,7 @@
          alert("Error: " + req.responseText);
        });
     }
-    $scope.$watchCollection('[ecoregion, wdpa_id]', function(newValues){
-      console.log(newValues)
-      $scope.makeChart({ecoregion: newValues[0], wdpa_id: newValues[1]})
-    })
+
    }
 
   </script>
