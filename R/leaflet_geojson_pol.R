@@ -77,6 +77,7 @@ regions=RJSONIO::fromJSON(json)
 lmap <- Leaflet$new()
 lmap$tileLayer(provide='Esri.WorldImagery')
 lmap$setView(c(-4, 137), zoom = 6)
+lmap$set(height = 300,width=500)
 lmap$geoJson(
   regions, 
   style = "#! function(feature) {
@@ -158,13 +159,13 @@ return(lmap)
 
 saveleafmap <- function(ecoregion='10105',wdpa_id='1500'){
   a <- leafmap(ecoregion, wdpa_id)
-  a$set(height = 500)
+  a$set(height = 200)
   a$save('output.html', cdn = T)
   return(invisible())
 }
 
 inlineleafmap <- function(ecoregion='10105',wdpa_id='1500'){
   a <- leafmap(ecoregion, wdpa_id)
-  #a$set(height = 500)
+  #a$set(height = 200)
   paste(capture.output(a$show('inline')), collapse ='\n')
 }
