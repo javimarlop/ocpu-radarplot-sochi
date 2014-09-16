@@ -66,7 +66,7 @@
   </body>
   <script>
 	  
-  function SochiCtrl2($scope){
+  function SochiCtrl($scope){
     $scope.ecoregions = ['10105']
     $scope.wdpa_ids = ["1500"]
     $scope.ecoregion = $scope.ecoregions[0]
@@ -79,13 +79,6 @@
          alert("Error: " + req.responseText);
        });
     }
-    $scope.$watchCollection('[ecoregion, wdpa_id]', function(newValues){
-      console.log(newValues)
-      $scope.makeChart({ecoregion: newValues[0], wdpa_id: newValues[1]})
-    })
-   }	  
-	  
-  function SochiCtrl($scope){
     $scope.makeChart = function(){
        var req = ocpu.rpc("inlineleafmap", 
         {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
@@ -94,8 +87,12 @@
          alert("Error: " + req.responseText);
        });
     }
-
-   }
+        
+    $scope.$watchCollection('[ecoregion, wdpa_id]', function(newValues){
+      console.log(newValues)
+      $scope.makeChart({ecoregion: newValues[0], wdpa_id: newValues[1]})
+    })
+   }	  
 
   </script>
 </html>
