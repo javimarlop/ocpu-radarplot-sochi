@@ -41,7 +41,6 @@
          <h2>Habitat Explorer</h2>
          <a href='http://rcharts.io' class="label label-primary">rCharts<a>
          <a href='http://opencpu.org' class="label label-success">OpenCPU</a>
-         <a href='http://nvd3.org' class="label label-info">NVD3</a>
        </div>
       </div>
        <div class='row' id='medals'>
@@ -55,7 +54,7 @@
        <div class='col-md-9'>
 		<div id="sochi2"></div>   
        </div>        
-       <div class='col-md-9'>
+       <div class='col-md-10'>
 		<div id="sochi"></div>   
        </div>
       </div>
@@ -77,7 +76,7 @@
         $('#sochi2').html(output)
        }).fail(function(text){
          alert("Error: " + req.responseText);
-       });
+       })
        var req = ocpu.rpc("inlineleafmap", 
         {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
         $('#sochi').html(output)
