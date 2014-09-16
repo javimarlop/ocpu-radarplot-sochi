@@ -78,6 +78,7 @@ lmap <- Leaflet$new()
 lmap$tileLayer(provide='Esri.WorldImagery')
 lmap$setView(c(-4, 137), zoom = 6)
 lmap$set(height = 300,width=500)
+lmap$title(text= "Location")
 lmap$geoJson(
   regions, 
   style = "#! function(feature) {
