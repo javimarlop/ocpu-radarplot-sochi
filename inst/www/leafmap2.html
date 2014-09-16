@@ -78,8 +78,6 @@
        }).fail(function(text){
          alert("Error: " + req.responseText);
        });
-    }
-    $scope.makeChart = function(){
        var req = ocpu.rpc("inlineleafmap", 
         {"ecoregion": $scope.ecoregion, "wdpa_id": $scope.wdpa_id}, function(output){   
         $('#sochi').html(output)
