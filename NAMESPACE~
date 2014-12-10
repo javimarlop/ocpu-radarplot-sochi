@@ -1,8 +1,0 @@
-exportPattern("^[[:alpha:]]+")
-import(XML)
-import(reshape2)
-import(rCharts)
-import(rgeos)
-import(ggmap)
-import(rgdal)
-import(leaflet_geojson_pol)

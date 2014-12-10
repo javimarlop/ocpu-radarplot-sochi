@@ -15,7 +15,17 @@ Imports:
   rgeos,
   ggmap,
   rgdal,
-  RJSONIO
+  RJSONIO,
+  bitops,
+  RCurl,
+  tm,
+  maps,
+  ggplot2,
+  devtools,
+  streamR,
+  httr,
+  ROAuth,
+  twitteR
 Collate:
   sochi.R
   bostonhist.R
@@ -25,4 +35,5 @@ Collate:
   readcsvnew.R
   plot_basemap.R
   leaflet_geojson_pol.R
+  reachout.R
 

@@ -1,26 +1,27 @@
-library(twitteR)
-#library(maps)
+#library(twitteR)
+##library(maps)
 
-#    reqURL <- "https://api.twitter.com/oauth/request_token"
-#            accessURL <- "http://api.twitter.com/oauth/access_token"
-#            authURL <- "http://api.twitter.com/oauth/authorize"
-#            consumerKey <- "yyy"
-#            consumerSecret <- "xxx"
-#            twitCred <- OAuthFactory$new(consumerKey=consumerKey,
-#                                         consumerSecret=consumerSecret,
-#                                         requestURL=reqURL,
-#                                         accessURL=accessURL,
-#                                         authURL=authURL)
-#    twitCred$handshake()
+##    reqURL <- "https://api.twitter.com/oauth/request_token"
+##            accessURL <- "http://api.twitter.com/oauth/access_token"
+##            authURL <- "http://api.twitter.com/oauth/authorize"
+##            consumerKey <- "yyy"
+##            consumerSecret <- "xxx"
+##            twitCred <- OAuthFactory$new(consumerKey=consumerKey,
+##                                         consumerSecret=consumerSecret,
+##                                         requestURL=reqURL,
+##                                         accessURL=accessURL,
+##                                         authURL=authURL)
+##    twitCred$handshake()
 
-#            registerTwitterOAuth(twitCred)
-load('twitteR_credentials')
-setup_twitter_oauth(twitCred$consumerKey,twitCred$consumerSecret,twitCred$oauthKey,twitCred$oauthSecret)
+##            registerTwitterOAuth(twitCred)
 
-geol<-read.table('geo3.csv',sep=' ',header=T)
+
+
 #require(multicore) # install.packages('multicore',,'http://www.rforge.net/')
 
 gttw0<-function(ltw0,nt=nt0,buf='100km',tx=tx0){#='and'
+rpath = system.file("extdata",package="ocpuRadarplot")
+#geol<-read.table(paste(rpath,'/geo3.csv',sep=''),sep=' ',header=T)
 loc<-paste(geol$latitude[ltw0],geol$longitude[ltw0],buf,sep=',')
 tmp<-NULL
 #twListToDF(searchTwitter('virunga',geocode='29,-1.3,100km',n=200))->kk
@@ -62,17 +63,46 @@ data<-NULL
 #}
 
 gttw<-function(ltw,nt=100,tx='ebola',np=50){ # np=75
+rpath = system.file("extdata",package="ocpuRadarplot")
+load(paste(rpath,'/twitteR_credentials_juan',sep=''))
+setup_twitter_oauth(twitCred$consumerKey,twitCred$consumerSecret,twitCred$oauthKey,twitCred$oauthSecret)
+geol<<-read.table(paste(rpath,'/geo3.csv',sep=''),sep=' ',header=T)
 tx0<<-tx
 nt0<<-nt
 #ltw<-seq(1,dim(geol)[1],d)#1:3
 ltw<-sample(1:dim(geol)[1],np)
-results<<-lapply(ltw,gttw0)#mclapply
-data <<- do.call("rbind", results)
+results<-lapply(ltw,gttw0)#mclapply #<<
+data <- do.call("rbind", results) #<<
 #ltw20<<-ltw2
 tweets.df_ll<-data[,c(18,17,1)]
 names(tweets.df_ll)<-c('lat','lng','text')
-write.table(tweets.df_ll,'dynmaps/data/data.csv',sep='|',quote=F,row.names=F)
+return(tweets.df_ll)
+##write.table(tweets.df_ll,'dynmaps/data/data.csv',sep='|',quote=F,row.names=F)
 #fitw3<<-sum(unlist(results3),na.rm=T)/length(unlist(results3))
 #return(results)
+}
+
+leafmap2 <- function(tx='ebola'){
+require(RJSONIO)
+require(rCharts)
+library(RColorBrewer)
+data<-gttw(tx=tx)
+
+# xxx
+
+return(lmap)
+}
+
+saveleafmap2 <- function(tx='ebola'){
+  a <- leafmap2(tx)
+  a$set(height = 200)
+  a$save('output.html', cdn = T)
+  return(invisible())
+}
+
+inlineleafmap2 <- function(tx='ebola'){
+  a <- leafmap2(tx)
+  #a$set(height = 200)
+  paste(capture.output(a$show('inline')), collapse ='\n')
 }
 
