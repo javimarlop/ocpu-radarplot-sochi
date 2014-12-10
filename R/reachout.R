@@ -4,8 +4,8 @@ library(twitteR)
 #    reqURL <- "https://api.twitter.com/oauth/request_token"
 #            accessURL <- "http://api.twitter.com/oauth/access_token"
 #            authURL <- "http://api.twitter.com/oauth/authorize"
-#            consumerKey <- "HryA1hxv9M6GgkP7VQUgAxngz"
-#            consumerSecret <- "08X4Y4MOR4VWi0S2RBtiz9gNOdwRUjzr38uSCsJXB1FkS5kZ7w"
+#            consumerKey <- "yyy"
+#            consumerSecret <- "xxx"
 #            twitCred <- OAuthFactory$new(consumerKey=consumerKey,
 #                                         consumerSecret=consumerSecret,
 #                                         requestURL=reqURL,
