@@ -129,8 +129,8 @@ body { margin:0; padding:0; }
 </div>
 
    <div id="filter-container">
-        <form class="form-search" class="noSelect" onSubmit="addCsvMarkers(); return false;">
-            <a href="#" id="clear" class="leaflet-popup-close-button">&#215;</a>
+        <form class="form-search" ng-controller='SochiCtrl'>
+            
             <div class="input-append">
                 <input type="text" id="filter-string" class="input-medium search-query search-box" autocomplete="off">
                 <button type="submit" class="btn search-box"><i class="icon-search"></i></button>
@@ -157,22 +157,22 @@ maxBounds: [[
 .setView([54.54, 12.16], 1)
 //map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 
-//  function SochiCtrl($scope){
-//    $scope.txs = ['species','virunga','endangered','habitat']
-//    $scope.tx = $scope.txs[0]
-//    $scope.makeChart = function(){
-//       var req = ocpu.rpc("inlineleafmap2", 
-//        {"tx": $scope.tx}, function(output){   
-//        $('#sochi').html(output)
-//       }).fail(function(text){
-//         alert("Error: " + req.responseText);
-//       });
-//    }
-//    $scope.$watchCollection('[tx]', function(newValues){
-//      console.log(newValues)
-//      $scope.makeChart({tx: newValues[0]})
-//    })
-//   }
+  function SochiCtrl($scope){
+    $scope.txs = ['species','virunga','endangered','habitat']
+    $scope.tx = $scope.txs[0]
+    $scope.makeChart = function(){
+       var req = ocpu.rpc("inlineleafmap2", 
+        {"tx": $scope.tx}, function(output){   
+        $('#sochi').html(output)
+       }).fail(function(text){
+         alert("Error: " + req.responseText);
+       });
+    }
+    $scope.$watchCollection('[tx]', function(newValues){
+      console.log(newValues)
+      $scope.makeChart({tx: newValues[0]})
+    })
+   }
 
   </script>
 </html>
