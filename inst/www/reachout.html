@@ -95,6 +95,7 @@ body { margin:0; padding:0; }
     </style>
     
   </head>
+<!--
   <body ng-app>
     
    <div class='container'>
@@ -121,6 +122,8 @@ body { margin:0; padding:0; }
 
     
   </body>
+-->
+
   <script>
 
 var map = L.mapbox.map('map','examples.map-20v6611k', {zoomControl: false, 
@@ -138,22 +141,22 @@ maxBounds: [[
 .setView([38.12, 13.38], 12)
 map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 
-  function SochiCtrl($scope){
-    $scope.txs = ['species','virunga','endangered','habitat']
-    $scope.tx = $scope.txs[0]
-    $scope.makeChart = function(){
-       var req = ocpu.rpc("inlineleafmap2", 
-        {"tx": $scope.tx}, function(output){   
-        $('#sochi').html(output)
-       }).fail(function(text){
-         alert("Error: " + req.responseText);
-       });
-    }
-    $scope.$watchCollection('[tx]', function(newValues){
-      console.log(newValues)
-      $scope.makeChart({tx: newValues[0]})
-    })
-   }
+//  function SochiCtrl($scope){
+//    $scope.txs = ['species','virunga','endangered','habitat']
+//    $scope.tx = $scope.txs[0]
+//    $scope.makeChart = function(){
+//       var req = ocpu.rpc("inlineleafmap2", 
+//        {"tx": $scope.tx}, function(output){   
+//        $('#sochi').html(output)
+//       }).fail(function(text){
+//         alert("Error: " + req.responseText);
+//       });
+//    }
+//    $scope.$watchCollection('[tx]', function(newValues){
+//      console.log(newValues)
+//      $scope.makeChart({tx: newValues[0]})
+//    })
+//   }
 
   </script>
 </html>

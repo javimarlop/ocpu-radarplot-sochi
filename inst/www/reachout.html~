@@ -17,19 +17,81 @@
     <script src='opencpu/opencpu-0.4.js' type='text/javascript'></script>
     <script src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js'></script>
 
-    
-    <style>
-    .rChart {
-      display: block;
-      margin-left: auto; 
-      margin-right: auto;
-      width: 500px;
-      height: 300px;
-    }
-    .container{
-      margin-top: 40px;
-    }
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet' />    
 
+    <style>
+body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+.legend label,
+.legend span {
+  display:block;
+  float:left;
+  height:15px;
+  width:20%;
+  text-align:center;
+  font-size:9px;
+  color:#808080;
+  }
+
+
+#map-ui {
+    position: absolute;
+    top: 10px;
+    right: 1300px;
+    z-index: 100;
+}
+ 
+#map-ui ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+ 
+#map-ui a {
+    font-size: 13px;
+    background: #FFF;
+    color: #3C4E5A;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #BBB;
+    border-bottom-width: 0;
+    min-width: 138px;
+    padding: 10px;
+    text-decoration: none;
+}
+ 
+#map-ui a:hover {
+    background: #ECF5FA;
+}
+ 
+#map-ui li:last-child a {
+    border-bottom-width: 1px;
+    -webkit-border-radius: 0 0 3px 3px;
+    border-radius: 0 0 3px 3px;
+}
+ 
+#map-ui li:first-child a {
+    -webkit-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
+}
+ 
+#map-ui a.active {
+    background: #3887BE;
+    border-color: #3887BE;
+    border-top-color: #FFF;
+    color: #FFF;
+}
+ 
+#map-ui li:first-child a.active {
+    border-top-color: #3887BE;
+}
+ 
+#map .map-fullscreen {
+    background-color: #28353D;
+}
     </style>
     
   </head>
@@ -60,6 +122,22 @@
     
   </body>
   <script>
+
+var map = L.mapbox.map('map','examples.map-20v6611k', {zoomControl: false, 
+minZoom: 13, maxZoom: 24, 
+maxBounds: [[
+38.38, //Further north
+38.38
+],
+[
+13.58, //Further west
+-13.10 //Further east
+]]  
+//maxBounds: [[60.0,45.0],[50.0,-35.0]] 
+})
+.setView([38.12, 13.38], 12)
+map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+
   function SochiCtrl($scope){
     $scope.txs = ['species','virunga','endangered','habitat']
     $scope.tx = $scope.txs[0]
