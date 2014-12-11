@@ -131,19 +131,19 @@ body { margin:0; padding:0; }
   <script>
 
 var map = L.mapbox.map('map','examples.map-20v6611k', {zoomControl: false, 
-minZoom: 13, maxZoom: 24, 
+minZoom: 4, maxZoom: 24, 
 maxBounds: [[
-38.38, //Further north
-38.38
+73.0, //Further north
+35.0
 ],
 [
-13.58, //Further west
--13.10 //Further east
+25.0, //Further west
+-25.0 //Further east
 ]]  
 //maxBounds: [[60.0,45.0],[50.0,-35.0]] 
 })
-.setView([38.12, 13.38], 12)
-map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+.setView([54.54, 12.16], 1)
+//map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 
 //  function SochiCtrl($scope){
 //    $scope.txs = ['species','virunga','endangered','habitat']
