@@ -125,11 +125,22 @@ body { margin:0; padding:0; }
 -->
 
 <div id='map'>
-    
 </div>
 
-  <script>
+   <div id="filter-container">
+        <form class="form-search" class="noSelect" onSubmit="addCsvMarkers(); return false;">
+            <a href="#" id="clear" class="leaflet-popup-close-button">&#215;</a>
+            <div class="input-append">
+                <input type="text" id="filter-string" class="input-medium search-query search-box" autocomplete="off">
+                <button type="submit" class="btn search-box"><i class="icon-search"></i></button>
+                <!-- <span class="add-on">
+                </span> -->
+            </div>
+        </form>
+        <div id="search-results" class="leaflet-control-attribution leaflet-control pull-right"></div>
+    </div>
 
+<script>
 var map = L.mapbox.map('map','examples.map-20v6611k', {zoomControl: false, 
 minZoom: 4, maxZoom: 24, 
 maxBounds: [[
