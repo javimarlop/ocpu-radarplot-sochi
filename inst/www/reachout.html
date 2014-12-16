@@ -128,18 +128,15 @@ body { margin:0; padding:0; }
 <div id='map'>
 </div>
 
-   <div id="filter-container">
-        <form class="form-search"  id="sochi" ng-controller='SochiCtrl'>
-            
-            <div class="input-append">
-                <input type="text" id="sochi" class="input-medium search-query search-box" autocomplete="off">
-                <button type="submit" class="btn search-box"><i class="icon-search"></i></button>
-                <!-- <span class="add-on">
-                </span> -->
-            </div>
-        </form>
-        
-    </div>
+    <div class='col-md-3' ng-controller='SochiCtrl'>
+          <select class='form form-control' ng-model='tx' 
+           ng-options='tx for tx in txs'></select>
+          <br/>
+ 
+        </div>
+       <div class='col-md-9'>
+		<div id="sochi"></div>   
+       </div>
 
 <script>
 var map = L.mapbox.map('map','examples.map-20v6611k', {zoomControl: false, 

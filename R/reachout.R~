@@ -77,7 +77,7 @@ data <- do.call("rbind", results) #<<
 tweets.df_ll<-data[,c(18,17,1)]
 names(tweets.df_ll)<-c('lat','lng','text')
 return(tweets.df_ll)
-write.table(tweets.df_ll,'dynmaps/data/data.csv',sep='|',quote=F,row.names=F)
+##write.table(tweets.df_ll,'dynmaps/data/data.csv',sep='|',quote=F,row.names=F)
 #fitw3<<-sum(unlist(results3),na.rm=T)/length(unlist(results3))
 #return(results)
 }
@@ -86,7 +86,8 @@ leafmap2 <- function(tx='ebola'){
 require(RJSONIO)
 require(rCharts)
 library(RColorBrewer)
-data<-gttw(tx=tx)
+//data<-gttw(tx=tx)
+write.table(tweets.df_ll,'dynmaps/data/data.csv',sep='|',quote=F,row.names=F)
 # xxx
 
 return(lmap)
