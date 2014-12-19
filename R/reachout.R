@@ -84,7 +84,7 @@ names(tweets.df_ll)<-c('lat','lng','text')
 rpath2 = system.file("www",package="ocpuRadarplot")
 write.table(tweets.df_ll,paste(rpath2,'/data/data.csv',sep=''),sep='|',quote=F,row.names=F)
 browseURL(paste(rpath2,'/inddex.html',sep=''))
-list(message = paste("DONE!"))
+list(message = paste(dim(tweets.df_ll)[1],"twitts found for keyword",tx))
 #res = "<meta http-equiv='refresh' content='0; url=inddex.html' />"
 #retun(res)
 #browseURL(paste(rpath2,'/dynmaps/index.html',sep=''))
