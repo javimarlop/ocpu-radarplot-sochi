@@ -76,18 +76,29 @@ data <- do.call("rbind", results) #<<
 #ltw20<<-ltw2
 tweets.df_ll<-data[,c(18,17,1)]
 names(tweets.df_ll)<-c('lat','lng','text')
-return(tweets.df_ll)
-write.table(tweets.df_ll,'dynmaps/data/data.csv',sep='|',quote=F,row.names=F)
+#library(leaflet)
+#m = leaflet() %>% addTiles()
+#m2 =m %>% addMarkers(head(tweets.df_ll$lat),head(tweets.df_ll$lng), popup=as.character(head(tweets.df_ll$text)))
+#return(m2)
+#return(tweets.df_ll)
+rpath2 = system.file("www",package="ocpuRadarplot")
+write.table(tweets.df_ll,paste(rpath2,'/data/data.csv',sep=''),sep='|',quote=F,row.names=F)
+browseURL(paste(rpath2,'/inddex.html',sep=''))
+list(message = paste("DONE!"))
+#res = "<meta http-equiv='refresh' content='0; url=inddex.html' />"
+#retun(res)
+#browseURL(paste(rpath2,'/dynmaps/index.html',sep=''))
 #fitw3<<-sum(unlist(results3),na.rm=T)/length(unlist(results3))
 #return(results)
 }
 
 leafmap2 <- function(tx='ebola'){
-require(RJSONIO)
-require(rCharts)
-library(RColorBrewer)
+#require(RJSONIO)
+#require(rCharts)
+#library(RColorBrewer)
 data<-gttw(tx=tx)
-# xxx
+library(leaflet)
+m = leaflet() %>% addTiles()
 
 return(lmap)
 }
